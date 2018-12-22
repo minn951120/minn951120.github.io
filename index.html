@@ -3,17 +3,133 @@
 <title>kjm</title>
 <style>
 .main-container{
-    width: 100%;
-    height: 100%;
-}
-h2{
+    max-width: 700px;
     margin: auto;
+    padding: 10px 20px;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-color: #aaa;
 }
+.post-container{
+    width: 100%;
+    margin-bottom: 40px;
+}
+.title{
+    font-size: 24px;
+    font-weight: 1000;
+    margin-bottom: 15px;
+}
+.content{
+    font-size: 14px;
+}
+.footer{
+    position: fixed;
+    bottom: 20px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+}
+.contact-to-me{
+    cursor: pointer;
+    font-weight: 600;
+    color: #058;
+    font-style: italic;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 50px; /* 50px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 50px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 50px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 50px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 50px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+/*snackbar end*/
 </style>
+<script>
+const copyToClipboard = str => {
+    const el = document.createElement('textarea');
+    el.value = str;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+};
+function EmailToClipboard() {
+    copyToClipboard("minn951120@naver.com");
+    showClipboardSnackBar();
+}
+function showClipboardSnackBar(){
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
 </head>
 <body>
 <div class="main-container">
-<h2>At Work<h2>
+<div class="post-container">
+    <div class="title">JeongMin Kim</div>
+    <div class="content">
+        minn951120, kjm<br/>
+        <u class="contact-to-me" onclick="EmailToClipboard()">minn951120@naver.com</u><br/><br/>
+        Undergraduate courses at Chung-Ang University, School of Computer Science and Engineering<br/>
+    </div>
 </div>
+<div class="post-container">
+    <div class="title">Interests</div>
+    <div class="content">
+        MicroService Architecture, Agile, AI
+    </div>
+</div>
+<div class="post-container">
+    <div class="title">What I did</div>
+    <div class="content">
+        SW maintenance, Republic Of Korea AirForce (2016.3-2018.3)<br/>
+        Mobile Application / Service Developer, MarketDesigners Co. (2018.7-2018.12)
+    </div>
+</div>
+</div>
+<div class="footer">
+    made by me, 2018
+</div>
+<div id="snackbar">email address copied in clipboard!</div>
 </body>
 </html>
